@@ -11,28 +11,28 @@ st.title('Klasifikasi Diabetes')
 col1, col2 = st.columns(2)
 
 with col1 :
-    Pregnancies = st.text_input ('input nilai Pregnancies')
+    Pregnancies = st.text_input ('nilai Pregnancies')
 
 with col2 :
-    Glucose = st.text_input ('input nilai Glucose')
+    Glucose = st.text_input ('nilai Glucose')
 
 with col1 :
-    BloodPressure = st.text_input ('input nilai Blood Pressure')
+    BloodPressure = st.text_input ('nilai Blood Pressure')
 
 with col2 :
-    SkinThickness = st.text_input ('input nilai Skin Thickness')
+    SkinThickness = st.text_input ('nilai Skin Thickness')
 
 with col1 :
-    Insulin = st.text_input ('input nilai Insulin')
+    Insulin = st.text_input ('nilai Insulin')
 
 with col2 :
-    BMI = st.text_input ('input nilai BMI')
+    BMI = st.text_input ('nilai BMI')
 
 with col1 :
-    DiabetesPedigreeFunction = st.text_input ('input nilai Diabetes Pedigree Function')
+    DiabetesPedigreeFunction = st.text_input ('nilai Diabetes Pedigree Function')
 
 with col2 :
-    Age = st.text_input ('input nilai Age')
+    Age = st.text_input ('nilai Age')
 
 
 diab_diagnosis = ''
