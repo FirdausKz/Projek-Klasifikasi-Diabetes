@@ -1,13 +1,13 @@
 import pickle
 import streamlit as st
 
-# membaca model
+
 diabetes_model = pickle.load(open('random_forest_model.pkl', 'rb'))
 
-#judul web
+
 st.title('Klasifikasi Diabetes')
 
-#membagi kolom
+
 col1, col2 = st.columns(2)
 
 with col1 :
@@ -34,15 +34,26 @@ with col1 :
 with col2 :
     Age = st.text_input ('input nilai Age')
 
-# code untuk prediksi
+
 diab_diagnosis = ''
 
-# membuat tombol untuk prediksi
+def to_float(value):
+    return float(value.replace(',', '.'))
 if st.button('Test Prediksi Diabetes'):
-    diab_prediction = diabetes_model.predict([[Pregnancies, Glucose, BloodPressure, SkinThickness, Insulin, BMI, DiabetesPedigreeFunction, Age]])
+    try:
+        input_data = [[
+            to_float(Pregnancies), to_float(Glucose), to_float(BloodPressure),
+            to_float(SkinThickness), to_float(Insulin), to_float(BMI),
+            to_float(DiabetesPedigreeFunction), to_float(Age)
+        ]]
 
-    if(diab_prediction[0] == 1):
-        diab_diagnosis = 'Pasien terkena Diabetes'
-    else:
-        diab_diagnosis = 'Pasien tidak terkena Diabetes'
+        diab_prediction = diabetes_model.predict(input_data)
+
+        if(diab_prediction[0] == 1):
+            diab_diagnosis = 'Pasien terkena Diabetes'
+        else:
+            diab_diagnosis = 'Pasien tidak terkena Diabetes'
+
+    except ValueError:
+        diab_diagnosis = 'Harap masukkan semua input angka yang valid (gunakan koma atau titik)'
 st.success(diab_diagnosis)
