@@ -8,7 +8,7 @@ except FileNotFoundError:
     st.error("Error: 'random_forest_model.pkl' not found. Pastikan file model ada di direktori yang benar.")
     st.stop()
 
-st.title('📊Klasifikasi Diabetes')
+st.title('🩺 Diabetes Classification')
 
 if 'Pregnancies_val' not in st.session_state:
     st.session_state.Pregnancies_val = ''
@@ -95,12 +95,12 @@ with col2 :
 
 
 
-col1, col2, _ = st.columns([2, 1, 4.5])
+col1, col2, _ = st.columns([1, 2, 1.75])
 with col1:
-    test_button = st.button('Test Prediksi Diabetes')
+    test_button = st.button('🧪Test Diabetes')
 
 with col2:
-    reset_button = st.button('Reset')
+    reset_button = st.button('🔄Reset')
     
 def to_float(value):
     return float(value.replace(',', '.'))
@@ -119,18 +119,16 @@ if test_button:
         diab_prediction = diabetes_model.predict(input_data)
 
         if(diab_prediction[0] == 1):
-            diab_diagnosis = 'Pasien terkena Diabetes'
+            diab_diagnosis = 'The patient is diagnosed with Diabetes'
+            st.success(diab_diagnosis)
         else:
-            diab_diagnosis = 'Pasien tidak terkena Diabetes'
+            diab_diagnosis = 'The patient is not diagnosed with Diabetes'
+            st.success(diab_diagnosis)
 
     except ValueError:
-        diab_diagnosis = 'Harap masukkan semua input angka yang valid (gunakan koma atau titik).'
-    except Exception as e:
-        diab_diagnosis = f'Terjadi kesalahan: {e}'
-        
-st.success(diab_diagnosis)
-
-
+        diab_diagnosis = 'Please enter all valid numeric inputs (use comma or dot).'
+        st.error(diab_diagnosis)
+    
 if reset_button:
     
     st.session_state.Pregnancies_val = ''
